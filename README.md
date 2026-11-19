@@ -105,11 +105,19 @@ There are no dependencies. Layout:
 
 The userscript build falls back to `localStorage` when the `GM_*` APIs are missing, so you can paste it into the DevTools console on `/apps` to try a change quickly.
 
-## Publishing to the Chrome Web Store
+## Releasing
 
-1. Bump `version` in `package.json`, then run `npm run package`.
-2. Upload `dist/hatchbox-enhancer-<version>.zip` in the [Developer Dashboard](https://chrome.google.com/webstore/devconsole). There's a one-time $5 registration fee.
-3. Listing notes: the single purpose is "reorganize the Hatchbox apps list". `storage` saves the user's groups and ordering. Host access to `hatchbox.io` is needed to rearrange that page. No data is collected or sent anywhere.
+Changes go in [`CHANGELOG.md`](CHANGELOG.md) under **Unreleased**. Then:
+
+```sh
+npm run release -- patch      # or minor, major, or an exact x.y.z; add --dry-run to preview
+```
+
+This bumps the version in `package.json` and the manifest, moves the Unreleased notes under the new version, builds `dist/hatchbox-enhancer-<version>.zip`, commits, tags `v<version>`, pushes, and creates a GitHub release with the zip and userscript attached. In Claude Code, `/release` also writes the changelog entries from the commits since the last tag.
+
+Userscript users update automatically from `main`. For the extension, upload the zip in the [Developer Dashboard](https://chrome.google.com/webstore/devconsole) under **Package → Upload new package** and submit for review. The store takes the `.zip` (it signs the extension itself) and requires each version to be higher than the last.
+
+Listing notes: the single purpose is "reorganize the Hatchbox apps list". `storage` saves the user's groups and ordering. Host access to `hatchbox.io` is needed to rearrange that page. No data is collected or sent anywhere.
 
 ## License
 
