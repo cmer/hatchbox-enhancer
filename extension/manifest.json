@@ -3,7 +3,7 @@
   "name": "Hatchbox Enhancer",
   "version": "1.0.0",
   "description": "Group your Hatchbox apps, nest staging under production, and sort them your way. Syncs through your browser account.",
-  "homepage_url": "https://github.com/cmer/hatchbox-enhanced",
+  "homepage_url": "https://github.com/cmer/hatchbox-enhancer",
   "permissions": ["storage"],
   "content_scripts": [
     {

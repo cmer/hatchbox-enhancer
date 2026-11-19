@@ -40,7 +40,7 @@ The only permissions it asks for are `storage` and access to `hatchbox.io`.
 
 ### Userscript
 
-For Tampermonkey or Violentmonkey users. **[Install the userscript](https://raw.githubusercontent.com/cmer/hatchbox-enhanced/main/hatchbox-enhancer.user.js)** and your userscript manager offers to add it. Updates are picked up automatically from this repo. It can sync across machines through a private GitHub Gist (see below).
+For Tampermonkey or Violentmonkey users. **[Install the userscript](https://raw.githubusercontent.com/cmer/hatchbox-enhancer/main/hatchbox-enhancer.user.js)** and your userscript manager offers to add it. Updates are picked up automatically from this repo. It can sync across machines through a private GitHub Gist (see below).
 
 ## How apps are paired
 
