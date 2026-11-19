@@ -1,6 +1,6 @@
 # Hatchbox Enhancer
 
-A browser extension (and userscript) that reorganizes the [Hatchbox](https://hatchbox.io/apps) apps list:
+A browser extension ([Chrome Web Store](https://chromewebstore.google.com/detail/bpiiminbibelibmggcbbioiifdooidkc)) and userscript that reorganizes the [Hatchbox](https://hatchbox.io/apps) apps list:
 
 - **Environments nested under production.** `acme-api-staging` sits under `acme-api` (or `acme-api-production`), so each project is one block.
 - **Your own groups.** Create groups, rename them, reorder them, collapse them.
@@ -33,7 +33,7 @@ It only rearranges the rows Hatchbox already renders. Links, deploy buttons and 
 
 Chrome, Edge, Brave, Arc and other Chromium browsers.
 
-- **From the Chrome Web Store:** _link coming once published._
+- **From the Chrome Web Store:** [install Hatchbox Enhancer](https://chromewebstore.google.com/detail/bpiiminbibelibmggcbbioiifdooidkc).
 - **From source:** clone this repo, run `npm run build`, open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked**, and pick `dist/extension`.
 
 The only permissions it asks for are `storage` and access to `hatchbox.io`.
