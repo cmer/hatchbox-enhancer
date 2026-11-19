@@ -91,12 +91,26 @@ if (run('git', ['status', '--porcelain'])) {
 run('git', ['tag', '-a', tag, '-m', `Release ${tag}\n\n${notes}`]);
 run('git', ['push', '-q', 'origin', 'main', tag], { inherit: true });
 
+// GitHub release body: the changelog notes plus install instructions for both builds.
+const zipName = zip.slice('dist/'.length);
+const releaseBody = `${notes}
+
+## Install
+
+**Chrome Web Store (recommended).** The easiest way: [install Hatchbox Enhancer](https://chromewebstore.google.com/detail/bpiiminbibelibmggcbbioiifdooidkc). It updates automatically. Store updates can take a few days to pass review.
+
+**Extension, manually.** Download \`${zipName}\` below and unzip it. Open \`chrome://extensions\`, turn on **Developer mode**, click **Load unpacked**, and pick the unzipped folder. Manual installs don't update themselves.
+
+**Userscript (Tampermonkey or Violentmonkey).** With a userscript manager installed, click [\`hatchbox-enhancer.user.js\`](https://github.com/cmer/hatchbox-enhancer/releases/download/${tag}/hatchbox-enhancer.user.js) and confirm. It updates automatically from the latest release.
+`;
+writeFileSync(path('dist/release-notes.md'), releaseBody);
+
 let releaseUrl = '';
 try {
-  releaseUrl = run('gh', ['release', 'create', tag, zip, 'hatchbox-enhancer.user.js', '--title', tag, '--notes', notes, '--verify-tag']);
+  releaseUrl = run('gh', ['release', 'create', tag, zip, 'hatchbox-enhancer.user.js', '--title', tag, '--notes-file', 'dist/release-notes.md', '--verify-tag']);
 } catch (e) {
   console.warn(`\n! Tag pushed, but the GitHub release could not be created (${e.message.split('\n')[0]}).`);
-  console.warn(`  Retry with: gh release create ${tag} ${zip} hatchbox-enhancer.user.js --title ${tag} --notes-from-tag`);
+  console.warn(`  Retry with: gh release create ${tag} ${zip} hatchbox-enhancer.user.js --title ${tag} --notes-file dist/release-notes.md`);
 }
 
 console.log(`

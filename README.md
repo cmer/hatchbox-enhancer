@@ -31,16 +31,17 @@ It only rearranges the rows Hatchbox already renders. Links, deploy buttons and 
 
 ### Browser extension (recommended)
 
-Chrome, Edge, Brave, Arc and other Chromium browsers.
+**The easiest way to install is from the [Chrome Web Store](https://chromewebstore.google.com/detail/bpiiminbibelibmggcbbioiifdooidkc).** It updates automatically and syncs your setup through your browser account. Works in Chrome, Edge, Brave, Arc and other Chromium browsers.
 
 - **From the Chrome Web Store:** [install Hatchbox Enhancer](https://chromewebstore.google.com/detail/bpiiminbibelibmggcbbioiifdooidkc).
+- **Manually:** download `hatchbox-enhancer-<version>.zip` from the [latest release](https://github.com/cmer/hatchbox-enhancer/releases/latest), unzip it, open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked**, and pick the unzipped folder. Manual installs don't update themselves.
 - **From source:** clone this repo, run `npm run build`, open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked**, and pick `dist/extension`.
 
 The only permissions it asks for are `storage` and access to `hatchbox.io`.
 
 ### Userscript
 
-For Tampermonkey or Violentmonkey users. **[Install the userscript](https://raw.githubusercontent.com/cmer/hatchbox-enhancer/main/hatchbox-enhancer.user.js)** and your userscript manager offers to add it. Updates are picked up automatically from this repo. It can sync across machines through a private GitHub Gist (see below).
+For Tampermonkey or Violentmonkey users. **[Install the userscript](https://github.com/cmer/hatchbox-enhancer/releases/latest/download/hatchbox-enhancer.user.js)** and your userscript manager offers to add it. It updates automatically when a new release is published. It can sync across machines through a private GitHub Gist (see below).
 
 ## How apps are paired
 
@@ -101,7 +102,7 @@ There are no dependencies. Layout:
 - `src/platform-userscript.js`: storage via `GM_getValue`/`GM_setValue` (falling back to `localStorage`), plus GitHub Gist sync.
 - `scripts/build.mjs`: wraps the core with each platform and writes both outputs.
 
-`hatchbox-enhancer.user.js` is generated but committed, so its raw URL works as an install link. Edit `src/`, then rebuild. The version comes from `package.json`.
+`hatchbox-enhancer.user.js` is generated and committed. Users install and update it from the latest GitHub release, not from `main`, so unreleased changes never reach them. Edit `src/`, then rebuild. The version comes from `package.json`.
 
 The userscript build falls back to `localStorage` when the `GM_*` APIs are missing, so you can paste it into the DevTools console on `/apps` to try a change quickly.
 
